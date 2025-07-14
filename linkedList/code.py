@@ -15,16 +15,81 @@ class LinkedList:
         self.head = new_node
         self.tail = new_node
         self.length = 1
-        
-        
-        
-        
-    # Print Linked List Elements
+
+
+    # NOTE:(Function 1) Append Item to the end of the linked list
+    def append(self, value):
+        node_to_append = Node(value)
+        if self.head is None:
+            self.head = node_to_append
+            self.tail = node_to_append
+            self.length = 1
+        else:
+            self.tail.next = node_to_append
+            self.tail = node_to_append
+            self.length += 1
+
+
+    # NOTE:(Function 2)  Pop Last element from the linked list
+    def pop(self):
+        if self.length == 0:
+            return None
+
+        else:
+            pre = self.head
+            temp = self.head
+            while temp.next:
+                pre = temp
+                temp = temp.next
+            self.tail = pre
+            self.tail.next = None
+            self.length -= 1
+            if self.length == 0:
+                self.head = None
+                self.tail = None
+            return temp.value
+
+    # NOTE:(Function 3)  add item at the beginning of linked list
+    def prepend(self, value):
+        node_to_append = Node(value)
+        if self.length == 0:
+            self.head = node_to_append
+            self.tail = node_to_append
+        else:
+            node_to_append.next = self.head
+            self.head = node_to_append
+        self.length += 1
+
+    # NOTE:(Function 4)  Pop the first item from linked list
+    def pop_first(self):
+        if self.length == 0:
+            return None
+        else:
+            poped_node = self.head
+            self.head = self.head.next
+            poped_node.next = None
+            self.length -= 1
+            if self.length == 0:
+                self.head = None
+                self.tail = None
+            return poped_node
+
+    # NOTE:(Function 5) Get element at index
+    def get(self, index):
+        if index >= self.length or index < 0:
+            return None
+        else:
+            temp = self.head
+            for _ in range(index):
+                temp = temp.next
+            return temp
+    # NOTE:(Last Function) Print Linked List Elements
     def print_list(self):
         temp = self.head
         while temp is not None:
             print(temp.value)
             temp = temp.next
-        
+
 mine = LinkedList(5)
-mine.print_list()
+mine.append(10)
+print(mine.get(3))
