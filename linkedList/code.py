@@ -83,6 +83,14 @@ class LinkedList:
             for _ in range(index):
                 temp = temp.next
             return temp
+    
+    # NOTE: (Function 6) Set element in index
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp:
+            temp.value = value
+            return True
+        return False
     # NOTE:(Last Function) Print Linked List Elements
     def print_list(self):
         temp = self.head
